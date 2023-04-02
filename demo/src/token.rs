@@ -4,8 +4,6 @@ pub enum Token
 {
 	/* SEPARATORS */
 	Comma,				// ","
-	Period,				// "."
-	Colon,				// ":"
 	Semicolon,			// ";"
 	ParenthesesOpen,	// "("
 	ParenthesesClose,	// ")"
@@ -15,6 +13,8 @@ pub enum Token
 	BracesClose,		// "}"
 
 	/* OPERATORS */
+	Scope,				// "::"
+	ReturnType,			// "->"
 	Equals,				// "=="
 	NotEqual,			// "<>"
 	GreaterEqual,		// ">="
@@ -33,6 +33,8 @@ pub enum Token
 	AtAssign,			// "@="
 	PoundAssign,		// "#="
 	DolarAssign,		// "$="
+	Period,				// "."
+	Colon,				// ":"
 	Assign,				// "="
 	Greater,			// ">"
 	Lesser,				// "<"

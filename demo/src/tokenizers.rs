@@ -202,11 +202,11 @@ fn parse_escape_sequence(text: &str) -> Option<(char, usize)> {
 	return None;
 }
 
+
+
 static SEPARATORS: &[(&str, Token)] = 
 &[
-	(".", Token::Period),
 	(",", Token::Comma),
-	(":", Token::Colon),
 	(";", Token::Semicolon),
 	("(", Token::ParenthesesOpen),
 	(")", Token::ParenthesesClose),
@@ -215,8 +215,11 @@ static SEPARATORS: &[(&str, Token)] =
 	("{", Token::BracesOpen),
 	("}", Token::BracesClose),
 ];
+
 static OPERATORS: &[(&str, Token)] = 
 &[
+	("::", 	Token::Scope),
+	("->", 	Token::ReturnType),
 	("==", 	Token::Equals),
 	("<>", 	Token::NotEqual),
 	(">=", 	Token::GreaterEqual),
@@ -235,24 +238,27 @@ static OPERATORS: &[(&str, Token)] =
 	("@=", 	Token::AtAssign),
 	("#=", 	Token::PoundAssign),
 	("$=", 	Token::DolarAssign),
-	("=", 	Token::Assign),
-	(">", 	Token::Greater),
-	("<", 	Token::Lesser),
-	("!", 	Token::Exclamation),
-	("&", 	Token::Ampersand),
-	("|", 	Token::VerticalPipe),
-	("^", 	Token::Caret),
-	("+", 	Token::Plus),
-	("-", 	Token::Minus),
-	("*", 	Token::Star),
-	("/", 	Token::Slash),
-	("%", 	Token::Percent),
-	("~", 	Token::Tilde),
-	("@", 	Token::At),
-	("#", 	Token::NumberSign),
-	("$", 	Token::Dolar),
+	(":",	Token::Colon),
+	(".",	Token::Period),
+	("=",	Token::Assign),
+	(">",	Token::Greater),
+	("<",	Token::Lesser),
+	("!",	Token::Exclamation),
+	("&",	Token::Ampersand),
+	("|",	Token::VerticalPipe),
+	("^",	Token::Caret),
+	("+",	Token::Plus),
+	("-",	Token::Minus),
+	("*",	Token::Star),
+	("/",	Token::Slash),
+	("%",	Token::Percent),
+	("~",	Token::Tilde),
+	("@",	Token::At),
+	("#",	Token::NumberSign),
+	("$",	Token::Dolar),
 ];
-static KEYWORDS: &[(&str, Token)] = 
+
+static KEYWORDS : &[(&str, Token)] = 
 &[
 	("module",		Token::Module),
 	("import",		Token::Import),
@@ -271,7 +277,7 @@ static KEYWORDS: &[(&str, Token)] =
 	("this",		Token::ThisObj),
 ];
 
-static LITERALS: &[(&str, Token)] = 
+static LITERALS : &[(&str, Token)] = 
 &[
 	("true",		Token::Boolean(true)),
 	("false",		Token::Boolean(false)),
@@ -288,15 +294,16 @@ static ESCAPE_SEQ : &[(&str, char)]  =
 	("\\n",  '\n'),
 	// TODO add more escape sequences
 ];
-static HEX_ESCAPE : &str = "\\x";
-static CHAR_QUOTE : &str = "\'";
-static STRING_QUOTE : &str = "\"";
 
-static BASES: &[(&[&str], u32)] = &[
+static BASES : &[(&[&str], u32)] = &[
 	(&["0b", "0B"], 2),
 	(&["0o", "0O"], 8),
 	(&["0x", "0X"], 16),
 ];
-static DIGIT_SEPARATOR: char = '\'';
-static DECIMAL_SEPARATOR: char = '.';
+
+static HEX_ESCAPE : &str			= "\\x";
+static CHAR_QUOTE : &str			= "\'";
+static STRING_QUOTE : &str		= "\"";
+static DIGIT_SEPARATOR : char	= '\'';
+static DECIMAL_SEPARATOR : char	= '.';
 
